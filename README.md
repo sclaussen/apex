@@ -4,28 +4,18 @@
 
 
 
-## Notes
-
-Subsystem Dependency Chain:
-- Feed A ON -> Feed ON
-- Feed B ON -> Wave ON
-- Feed C ON -> Siphon ON
-- Feed D ON -> Maintenance ON
-- Maintenance ON => Return OFF
-- Return OFF => Skimmer OFF, ATO-Enabled OFF
-- Skimmer OFF => ATO-Enabled OFF
-- ATO-Enabled OFF => ATO OFF
-
-
-
-Macros:
+## Macros
 
 - Feed A: Feed
   - Feed virtual outlet
   - 15 minutes
   - MP40s MP40-Feed (15% Nutrient)
   - Powerheads off
-  - Lights 100%
+  - Radions 100%
+  - Dependency chain
+    - Feed A ON -> Feed ON, or Feed-Timer ON -> Feed ON
+    - Feed ON -> MP40 MP40-Feed, Powerheads OFF, Radions 100%
+    - Feed-Timer ON -> Feed-AFS ON
 
 ```
 Fallback OFF
@@ -38,7 +28,10 @@ If Output Feed-Timer = ON Then ON
   - Wave virtual outlet
   - 15 minutes
   - MP40s MP40-Wave
-  - Lights 100%
+  - Radions 100%
+  - Dependency chain
+    - Feed B ON -> Wave ON
+    - Wave ON -> MP40 MP40-Wave, Radion 100%
 
 ```
 Fallback OFF
@@ -51,7 +44,10 @@ If FeedB 000 Then ON
   - Quasi-infinite
   - MP40s off
   - Powerheads off
-  - Lights 100%
+  - Radions 100%
+  - Dependency chain
+    - Feed C ON -> Siphon ON
+    - Siphon ON -> MP40 OFF, Powerheads OFF, Radions 100%
 
 ```
 Fallback OFF
@@ -64,10 +60,16 @@ If FeedC 000 Then ON
   - Quasi-infinite
   - MP40s off
   - Powerheads off
-  - Lights 100%
+  - Radions 100%
   - Return off
   - Skimmer off
   - ATO OFF
+  - Dependency chain:
+    - Feed D ON -> Maintenance ON
+    - Maintenance ON -> Return OFF, MP40s OFF, Powerheads OFF, Radions OFF, AWE OFF
+    - Return OFF -> Skimmer OFF, ATO-Enabled OFF
+    - Skimmer OFF -> ATO-Enabled OFF
+    - ATO-Enabled OFF -> ATO OFF
 
 ```
 Fallback OFF
@@ -355,7 +357,6 @@ If Time 20:00 to 20:10 Then ON
 
 
 ### Feed-AFS
-
 ```
 Fallback OFF
 Set OFF
