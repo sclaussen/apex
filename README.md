@@ -21,23 +21,46 @@ Subsystem Dependency Chain:
 Macros:
 
 - Feed A: Feed
+  - Feed virtual outlet
   - 15 minutes
   - MP40s MP40-Feed (15% Nutrient)
   - Powerheads off
   - Lights 100%
 
+```
+Fallback OFF
+Set OFF
+If FeedA 000 Then ON
+If Output Feed-Timer = ON Then ON
+```
+
 - Feed B: Wave
+  - Wave virtual outlet
   - 15 minutes
   - MP40s MP40-Wave
   - Lights 100%
 
+```
+Fallback OFF
+Set OFF
+If FeedB 000 Then ON
+```
+
 - Feed C: Siphon
+  - Siphon virtual outlet
   - Quasi-infinite
   - MP40s off
   - Powerheads off
   - Lights 100%
 
+```
+Fallback OFF
+Set OFF
+If FeedC 000 Then ON
+```
+
 - Feed D: Maintenance
+  - Maintenance virtual outlet
   - Quasi-infinite
   - MP40s off
   - Powerheads off
@@ -46,38 +69,11 @@ Macros:
   - Skimmer off
   - ATO OFF
 
-
-- Macro virtual outlets
-
-  - Feed
-```
-Fallback OFF
-Set OFF
-If FeedA 000 Then ON
-If Output Feed-Timer = ON Then ON
-```
-
-  - Wave
-```
-Fallback OFF
-Set OFF
-If FeedB 000 Then ON
-```
-
-  - Siphon
-```
-Fallback OFF
-Set OFF
-If FeedC 000 Then ON
-```
-
-  - Maintenance
 ```
 Fallback OFF
 Set OFF
 If FeedD 000 Then ON
 ```
-
 
 
 
