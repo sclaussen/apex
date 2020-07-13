@@ -100,13 +100,13 @@ If Outlet Maintenance = ON Then OFF
 
 ## Skimmer
 
-- Always defer start for 10 minutes to enable water levels to stabilize
+Always defer the start to enable the water levels to stabilize.
 
 ```
 Fallback OFF
 Set ON
 If Output Return = OFF Then OFF
-Defer 010:00 Then ON
+Defer 005:00 Then ON
 ```
 
 
@@ -119,9 +119,9 @@ Defer 010:00 Then ON
 
 ### Probes
 
-- ATO-LO: Sump water level low probe
-- ATO-HI: Sump water level high probe
-- ATO-WL: ATO container water level
+- ATO-LO: Sump low water probe
+- ATO-HI: Sump high water probe
+- ATO-WL: ATO container low water probe
 
 
 
@@ -255,18 +255,6 @@ If Outlet Maintenance = ON Then OFF
 
 ## Ecotech Radion XR30w G4 LED Lights
 
-I have two schemes for the Radion lights:
-
-1. FOWLR (Type Fish Only with Live Rock): One big hill, AB+ like
-
-2. Mixed Coral Lab AB+ (Type Mixed): Standard AB+ profile, ramp up for
-   an hour, 100% intensity for 7 hours of blue lights on full and the
-   remainder at 24%, then ramps down for an hour.  The only adjustment
-   I've made is blue light on the ramp down and a 1% night light until
-   late.
-
-
-
 ### Radion-L
 
 ```
@@ -394,9 +382,9 @@ Defer 000:30 Then ON
 
 ## Sump Light
 
-- Turn on the outlet for the LED over the sump.  If the outlet is on,
-  the LED is then turned on/off using a physical switch on the LED
-  itself.
+Turn on the outlet for the LED over the sump.  If the outlet is on,
+the LED is then turned on/off using a physical switch on the LED
+itself.
 
 ```
 Fallback OFF
