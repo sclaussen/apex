@@ -1,6 +1,6 @@
 # System Overview
 
-![system.jpg]
+![System Overview](./system.jpg)
 
 
 
