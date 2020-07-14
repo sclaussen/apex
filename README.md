@@ -6,7 +6,7 @@
 
 ## Macros
 
-- Feed A: Feed
+### Feed A: Feed
   - Note: The Feed-Timer is used for auto-feeding pellets via the
     Neptune AFS.  The Feed A macro is used for feeding the fish
     manually with mysis, et al.  The auto feeding mechanism is a super
@@ -29,7 +29,9 @@ If FeedA 000 Then ON
 If Output Feed-Timer = ON Then ON
 ```
 
-- Feed B: Wave
+
+
+### Feed B: Wave
   - Wave virtual outlet
   - 15 minutes
   - MP40s MP40-Wave
@@ -44,7 +46,9 @@ Set OFF
 If FeedB 000 Then ON
 ```
 
-- Feed C: Siphon
+
+
+### Feed C: Siphon
   - Siphon virtual outlet
   - Quasi-infinite
   - MP40s off
@@ -60,7 +64,10 @@ Set OFF
 If FeedC 000 Then ON
 ```
 
-- Feed D: Maintenance
+
+
+### Feed D: Maintenance
+
   - Maintenance virtual outlet
   - Quasi-infinite
   - MP40s off
