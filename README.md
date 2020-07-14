@@ -27,6 +27,7 @@ Fallback OFF
 Set OFF
 If FeedA 000 Then ON
 If Output Feed-Timer = ON Then ON
+If Outlet Maintenance = ON Then OFF
 ```
 
 
@@ -76,9 +77,13 @@ If FeedC 000 Then ON
   - Return off
   - Skimmer off
   - ATO OFF
+  - AWE OFF
+  - Kalk OFF
+  - Feed OFF
+  - Feed-Timer OFF
   - Dependency chain:
     - Feed D ON -> Maintenance ON
-    - Maintenance ON -> Return OFF, MP40s OFF, Powerheads OFF, Radions OFF, AWE OFF
+    - Maintenance ON -> Return OFF, MP40s OFF, Powerheads OFF, Radions OFF, AWE OFF, Kalk OFF
     - Return OFF -> Skimmer OFF, ATO-Enabled OFF
     - Skimmer OFF -> ATO-Enabled OFF
     - ATO-Enabled OFF -> ATO OFF
@@ -356,6 +361,7 @@ Set OFF
 If Time 10:00 to 10:10 Then ON
 If Time 14:00 to 14:10 Then ON
 If Time 20:00 to 20:10 Then ON
+If Outlet Maintenance = ON Then OFF
 ```
 
 
