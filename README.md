@@ -116,6 +116,8 @@ If FeedD 000 Then ON
 
 ## Return Pump
 
+Type: Neptune COR-15 Return Pump
+
 **Return** Outlet
 ```
 Fallback ON
