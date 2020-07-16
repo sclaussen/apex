@@ -103,7 +103,7 @@ If FeedC 000 Then ON
   - Skimmer OFF -> ATO-Enabled OFF
   - ATO-Enabled OFF -> ATO OFF
 
-**Maintenance** virtual outlet
+**Maintenance** Virtual Outlet
 ```
 Fallback OFF
 Set OFF
@@ -116,7 +116,8 @@ If FeedD 000 Then ON
 
 ## Return Pump
 
-Type: Neptune COR-15 Return Pump
+Type:
+- Neptune COR-15 Return Pump
 
 **Return** Outlet
 ```
@@ -130,6 +131,10 @@ If Outlet Maintenance = ON Then OFF
 
 
 ## Skimmer
+
+Type:
+- Regal 200INT Skimmer
+- VarioS-4 S Pinwheel Pump
 
 Always defer the start to enable the water levels to stabilize.
 
@@ -147,7 +152,9 @@ Defer 005:00 Then ON
 
 ## Auto Top Off System
 
-
+Type:
+- Neptune ATK Auto Top Off
+- Neptune Optical Sensor
 
 ### Probes
 
@@ -219,7 +226,10 @@ Min Time 060:00 Then OFF
 
 
 
-## MP40QDs
+## Primary Powerheads
+
+Type:
+- Ecotech MP40QD Powerhead x2
 
 ### MP40-L
 
@@ -286,7 +296,10 @@ If Output MP40-Tidal = ON Then MP40-Tidal
 
 
 
-## Powerheads
+## Secondary Powerheads
+
+Type:
+- ? x4
 
 **Powerheads** Outlet
 ```
@@ -302,7 +315,10 @@ If Outlet Maintenance = ON Then OFF
 
 
 
-## Ecotech Radion XR30w G4 LED Lights
+## Lights
+
+Type:
+- Ecotech Radion XR30w G4 LED x2
 
 Strict AB+ from 12:00pm to 8pm, 1 hour ramp up and down from 0% to
 100% intensity, 7 hours at maximum intensity.
@@ -418,6 +434,9 @@ If Output MP40-Tidal = ON Then 100
 
 ## Auto Water Exchange System
 
+Type:
+- Neptune DOS
+
 There are 3 "sets" of schemes saved publicly for AWE handling 10%,
 15%, and 20% auto water exchanges respectively.  Here's the
 calculations:
@@ -458,6 +477,9 @@ If Output Maintenance = ON Then OFF
 
 ## Feed
 
+Type:
+- Neptune AFS
+
 ### **Feed-Timer** Virtual Outlet
 
 ```
@@ -486,6 +508,10 @@ Defer 000:30 Then ON
 
 ## Kalkwasser
 
+Type:
+- Avast Marine K2 Kalk Stirrer
+- Neptune DOS
+
 ### Kalk-Stirrer
 
 **Kalk-Stirrer** Outlet
@@ -513,6 +539,9 @@ If Output Maintenance = ON Then OFF
 
 ## Heater1
 
+Type:
+- Eheim Jager 300W Heater x2
+
 **Heater1** Outlet
 ```
 77.9 - 78.1
@@ -523,6 +552,9 @@ If Output Maintenance = ON Then OFF
 
 
 ## Heater2
+
+Type:
+- Eheim Jager 300W Heater x2
 
 **Heater2** Outlet
 ```
@@ -601,7 +633,8 @@ If Output ATO-HI-Alarm = ON Then ON
 
 ## Booster Pump
 
-Type: Aquatec CDP 8800
+Type:
+- Aquatec CDP 8800
 
 The Aquatec CDP 8800 booster pump increases the water pressure going
 into my RO/DI system ensuring that I can product ~75GPD.
