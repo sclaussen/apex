@@ -1,5 +1,38 @@
 # System Overview
 
+## Equipment summary
+
+- Display Tank: Elos 120XL Tank (127G gross/103G net)
+- Display Tank Lights: Ecotech Radion XR30w G4 x2
+- Display Tank Primary Powerheads: Ecotech MP40QD Powerhead x2
+- Display Tank Secondary Powerheads: ? x4
+- RODI: 7 Stage Pro Plus 75 GPD RO/DI System
+- RODI Pressure Boost Pump: Aquatec CDP 8800
+- Water Storage Container (ATO): 40G Ace Roto Mold vt00040swss
+- Water Storage Container (NSW): 40G Ace Roto Mold vt00040swss
+- Water Storage Container (Reserve): 80G Ace Roto Mold
+- Water Storage Pump: BlueLine Aqua Pump 70 HD
+- Water Storage Water Level Sensor: Neptune Optical Sensor
+- Sump: Custom Acrylic Sump (35G)
+- Controller: Neptune Apex 2016 Controller
+- Return Pump: Neptune COR-15 Return Pump
+- Skimmer: Regal 200INT Skimmer
+- Skimmer Pump: VarioS-4 S Pinwheel Pump
+- Refugium: Chaeto Refugium 17G (14%)
+- Refugium Light: Kessil H380 Halo II LED Algae Grow Light
+- Kalk Stirrer: Avast Marine K2 Kalk Stirrer
+- Kwalk Doser: Neptune DOS
+- Heaters: Eheim Jager 300W Heater x2
+- Auto Top Off: Neptune ATK Auto Top Off
+- Auto Water Exchange: Neptune DOS
+- Feeder: Neptune AFS
+- PAR Meter: Neptune ASM Module
+- Ecotech Radion and MP40 controller: Neptune WXM Module
+
+
+
+## System Diagram
+
 ![System Overview](./system.jpg)
 
 
