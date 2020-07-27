@@ -61,43 +61,51 @@ In summary I've programmed the four Feed macros on the Apex as follows:
   Neptune AFS.  The Feed A macro is used for feeding the fish
   manually with mysis, et al.  The auto feeding mechanism is a super
   set of the manually feeding mechanism.
-- Utilizes the **Feed** and **MP40-Feed** virtual outlets and the **MP40-Feed** Profile
+- Utilizes the **Feed** and **FdA-Feed** virtual outputs and the **FdA-Feed** Profile
 - 15 minutes
-- MP40s MP40-Feed (10% Nutrient)
+- MP40s FdA-Feed (10% Nutrient)
 - Powerheads off
 - Radions 100%
 - Dependency chain (for Feed A or Feed-Timer)
   - Feed-Timer ON -> Feed ON
   - Feed A ON -> Feed ON
-  - Feed ON -> MP40 MP40-Feed, Powerheads OFF, Radions 100%
+  - Feed ON -> MP40 FdA-Feed, Powerheads OFF, Radions 100%
   - Feed-Timer ON -> Feed-AFS ON
 
-**Feed** Virtual Outlet
+**FdA-Feed**
 ```
 Fallback OFF
 Set OFF
 If FeedA 000 Then ON
-If Output Feed-Timer = ON Then ON
-If Outlet Maintenance = ON Then OFF
+If Output FdC-Siphon = ON Then OFF
+If Output FdD-Maint = ON Then OFF
 ```
 
 
 
 ### Feed B: Wave
 
-- Utilizes the **MP40-Pulse** virtual outlet and the **MP40-Pulse** Profile
+- Utilizes the **100-Pulse** virtual output and the **100-Pulse** Profile
 - 15 minutes
-- MP40s MP40-Pulse
+- MP40s 100-Pulse
 - Radions 100%
 - Dependency chain
-  - Feed B ON -> MP40-Pulse ON
-  - MP40-Pulse ON -> MP40 MP40-Pulse, Radion 100%
+  - Feed B ON -> 100-Pulse ON
+  - 100-Pulse ON -> MP40 100-Pulse, Radion 100%
 
+**FdB-Wave**
+```
+Fallback OFF
+Set OFF
+If FeedB 000 Then ON
+If Output FdC-Siphon = ON Then OFF
+If Output FdD-Maint = ON Then OFF
+```
 
 
 ### Feed C: Siphon
 
-- Utilizes the **Siphon** virtual outlet
+- Utilizes the **Siphon** virtual output
 - Quasi-infinite
 - MP40s off
 - Powerheads off
@@ -106,18 +114,19 @@ If Outlet Maintenance = ON Then OFF
   - Feed C ON -> Siphon ON
   - Siphon ON -> MP40 OFF, Powerheads OFF, Radions 100%
 
-**Siphon** Virtual Outlet
+**FdC-Siphon**
 ```
 Fallback OFF
 Set OFF
 If FeedC 000 Then ON
+If Output FdD-Maint = ON Then OFF
 ```
 
 
 
 ### Feed D: Maintenance
 
-- Utilizes the **Maintenance** virtual outlet
+- Utilizes the **Maintenance** virtual output
 - Quasi-infinite
 - MP40s off
 - Powerheads off
@@ -136,7 +145,7 @@ If FeedC 000 Then ON
   - Skimmer OFF -> ATO-Enabled OFF
   - ATO-Enabled OFF -> ATO OFF
 
-**Maintenance** Virtual Outlet
+**FdD-Maint**
 ```
 Fallback OFF
 Set OFF
@@ -152,11 +161,11 @@ If FeedD 000 Then ON
 Type:
 - Neptune COR-15 Return Pump
 
-**Return** Outlet
+**Return** Output
 ```
 Fallback ON
 Set ON
-If Outlet Maintenance = ON Then OFF
+If Output FdC-Maint = ON Then OFF
 ```
 
 
@@ -171,7 +180,7 @@ Type:
 
 Always defer the start to enable the water levels to stabilize.
 
-**Skimmer** Outlet
+**Skimmer** Output
 ```
 Fallback OFF
 Set ON
@@ -202,7 +211,7 @@ Type:
 Enables an alarm if the water level has been below the ATO-LO probe
 for too long.
 
-**ATO-LO-Alarm** Virtual Outlet
+**ATO-LO-Alarm** Virtual Output
 ```
 Fallback OFF
 Set OFF
@@ -217,7 +226,7 @@ Defer 090:00 Then ON
 Enables an alarm if the water level has been above the ATO-HI probe
 for too long.
 
-**ATO-HI-Alarm** Virtual Outlet
+**ATO-HI-Alarm** Virtual Output
 ```
 Set OFF
 If ATO-HI CLOSED Then ON
@@ -228,7 +237,7 @@ Defer 090:00 Then ON
 
 ### ATO-Enabled
 
-**ATO-Enabled** Virtual Outlet
+**ATO-Enabled** Virtual Output
 ```
 Fallback ON
 Set ON
@@ -241,7 +250,7 @@ Defer 005:00 Then ON
 
 ### ATO
 
-**ATO** Outlet
+**ATO** Output
 ```
 Fallback OFF
 Set OFF
@@ -264,66 +273,72 @@ Min Time 060:00 Then OFF
 Type:
 - Ecotech MP40QD Powerhead x2
 
-### MP40-L
+### MP40--L
 
-**MP40-L** Outlet
+**MP40--L** Output
 ```
-Fallback MP40-Feed
-tdata 00:00:00,0,0,10,0,0,0,0,0,0,0,0,0,0
+Fallback PSlowest
+tdata 00:00:00,0,0,10,2,0,0,0,0,0,0,0,0,0
 tdata 05:00:00,0,0,15,2,0,0,0,0,0,0,0,0,0
 tdata 07:00:00,0,0,20,7,0,0,0,0,0,0,0,0,0
-tdata 08:45:00,0,0,80,1,0,0,0,0,0,0,0,0,0
-tdata 10:15:00,0,0,60,7,0,0,0,0,0,0,0,0,0
+tdata 08:46:00,0,0,100,1,0,0,0,0,0,0,0,0,0
+tdata 10:25:00,0,0,85,3,150,0,0,0,0,0,0,0,0
 tdata 11:45:00,0,0,100,8,0,0,0,0,0,0,0,0,0
-tdata 13:15:00,0,0,80,1,0,0,0,0,0,0,0,0,0
+tdata 13:16:00,0,0,90,1,0,0,0,0,0,0,0,0,0
 tdata 14:30:00,0,0,100,8,0,0,0,0,0,0,0,0,0
-tdata 16:20:00,0,0,60,7,0,0,0,0,0,0,0,0,0
+tdata 16:23:00,0,0,85,1,0,0,0,0,0,0,0,0,0
 tdata 18:00:00,0,0,100,3,200,0,0,0,0,0,0,0,0
 tdata 19:29:00,0,0,68,1,0,0,0,0,0,0,0,0,0
 tdata 20:00:00,0,0,30,7,0,0,0,0,0,0,0,0,0
 tdata 21:00:00,0,0,15,2,0,0,0,0,0,0,0,0,0
-tdata 23:59:00,0,0,10,0,0,0,0,0,0,0,0,0,0
-If Output Siphon = ON Then OFF
-If Output Maintenance = ON Then OFF
-If Output MP40-Feed = ON Then MP40-Feed
-If Output MP40-Const = ON Then MP40-Const
-If Output MP40-Lagoon = ON Then MP40-Lagoon
-If Output MP40-Nutr = ON Then MP40-Nutr
-If Output MP40-Pulse = ON Then MP40-Pulse
-If Output MP40-ReefC = ON Then MP40-ReefC
-If Output MP40-Tidal = ON Then MP40-Tidal
+tdata 23:59:00,0,0,10,2,0,0,0,0,0,0,0,0,0
+If Output FdA-Feed = ON Then PFeed
+If Output FdB-Wave = ON Then PWave
+If Output FdC-Siphon = ON Then PSiphon
+If Output FdD-Maint = ON Then OFF
+If Output MP40-Const = ON Then PConst
+If Output MP40-Lagoon = ON Then PLagoon
+If Output MP40-Nutr = ON Then PNutr
+If Output MP40-Pulse2 = ON Then PPulse2
+If Output MP40-Pulse3 = ON Then PPulse3
+If Output MP40-ReefCr = ON Then PReefCr
+If Output MP40-Slowest = ON Then PSlowest
+If Output MP40-Tidal = ON Then PTidal
 ```
 
 
 
-### MP40-R
+### MP40--R
 
-**MP40-R** Outlet
+**MP40--R** Output
 ```
-Fallback MP40-Feed
-tdata 00:00:00,0,0,10,0,0,0,0,0,0,0,0,0,0
+Fallback PSlowest
+tdata 00:00:00,0,0,10,2,0,0,0,0,0,0,0,0,0
 tdata 05:00:00,0,0,15,2,0,0,0,0,0,0,0,0,0
 tdata 07:00:00,0,0,20,7,0,0,0,0,0,0,0,0,0
-tdata 08:45:00,0,0,80,1,0,0,0,0,0,0,0,0,0
-tdata 10:15:00,0,0,60,7,0,0,0,0,0,0,0,0,0
+tdata 08:46:00,0,0,100,1,0,0,0,0,0,0,0,0,0
+tdata 10:25:00,0,0,85,3,150,0,0,0,0,0,0,0,0
 tdata 11:45:00,0,0,100,8,0,0,0,0,0,0,0,0,0
-tdata 13:15:00,0,0,80,1,0,0,0,0,0,0,0,0,0
+tdata 13:16:00,0,0,90,1,0,0,0,0,0,0,0,0,0
 tdata 14:30:00,0,0,100,8,0,0,0,0,0,0,0,0,0
-tdata 16:20:00,0,0,60,7,0,0,0,0,0,0,0,0,0
+tdata 16:23:00,0,0,85,1,0,0,0,0,0,0,0,0,0
 tdata 18:00:00,0,0,100,3,200,0,0,0,0,0,0,0,0
 tdata 19:29:00,0,0,68,1,0,0,0,0,0,0,0,0,0
 tdata 20:00:00,0,0,30,7,0,0,0,0,0,0,0,0,0
 tdata 21:00:00,0,0,15,2,0,0,0,0,0,0,0,0,0
-tdata 23:59:00,0,0,10,0,0,0,0,0,0,0,0,0,0
-If Output Siphon = ON Then OFF
-If Output Maintenance = ON Then OFF
-If Output MP40-Feed = ON Then MP40-Feed
-If Output MP40-Const = ON Then MP40-Const
-If Output MP40-Lagoon = ON Then MP40-Lagoon
-If Output MP40-Nutr = ON Then MP40-Nutr
-If Output MP40-Pulse = ON Then MP40-Pulse
-If Output MP40-ReefC = ON Then MP40-ReefC
-If Output MP40-Tidal = ON Then MP40-Tidal
+tdata 23:59:00,0,0,10,2,0,0,0,0,0,0,0,0,0
+If Output FdA-Feed = ON Then PFeed
+If Output FdB-Wave = ON Then PWave
+If Output FdC-Siphon = ON Then PSiphon
+If Output FdD-Maint = ON Then OFF
+If Output MP40-Const = ON Then PConst
+If Output MP40-Lagoon = ON Then PLagoon
+If Output MP40-Nutr = ON Then PNutr
+If Output MP40-Pulse2 = ON Then PPulse2
+If Output MP40-Pulse3 = ON Then PPulse3
+If Output MP40-ReefCr = ON Then PReefCr
+If Output MP40-Slowest = ON Then PSlowest
+If Output MP40-Tidal = ON Then PTidal
 ```
 
 
@@ -334,14 +349,14 @@ If Output MP40-Tidal = ON Then MP40-Tidal
 Type:
 - ? x4
 
-**Powerheads** Outlet
+**Powerheads** Output
 ```
 Fallback ON
 Set OFF
 If Time 08:00 to 22:00 Then ON
-If Outlet Feed = ON Then OFF
-If Outlet Siphon = ON Then OFF
-If Outlet Maintenance = ON Then OFF
+If Output Feed = ON Then OFF
+If Output FdC-Siphon = ON Then OFF
+If Output FdC-Maint = ON Then OFF
 ```
 
 
@@ -359,35 +374,29 @@ Strict AB+ from 12:00pm to 8pm, 1 hour ramp up and down from 0% to
 - 100%: Blue, Royal Blue, Ultra Violet, Violet
 
 
-### Radion-L
+### Radion--L
 
 FOWLR
 
-**Radion-L** Outlet
+**Radion--L** Output
 ```
 Fallback OFF
 tdata 00:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 12:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 13:00:00,0,0,100,24,24,100,100,100,24,24,100,0,0
-tdata 20:00:00,0,0,100,24,24,100,100,100,24,24,100,0,0
-tdata 21:00:00,0,0,2,24,24,100,100,100,24,24,100,0,0
-tdata 22:00:00,0,0,1,24,24,100,100,100,24,24,100,0,0
-tdata 23:59:00,0,0,0,0,0,0,0,0,0,0,0,0,0
+tdata 09:00:00,0,0,1,0,0,0,0,0,0,0,0,0,0
+tdata 09:45:00,0,0,30,0,0,100,100,100,0,0,100,0,0
+tdata 13:00:00,0,0,60,24,24,100,100,100,24,24,100,0,0
+tdata 18:00:00,0,0,45,24,24,100,100,100,24,24,100,0,0
+tdata 19:45:00,0,0,30,0,0,100,100,100,0,0,100,0,0
+tdata 20:30:00,0,0,1,0,0,100,100,100,0,0,100,0,0
+tdata 23:59:00,0,0,1,0,0,0,0,0,0,0,0,0,0
 If Output Feed = ON Then 100
-If Output Siphon = ON Then 100
-If Output Maintenance = ON Then 100
-If Output MP40-Feed = ON Then 100
-If Output MP40-Const = ON Then 100
-If Output MP40-Lagoon = ON Then 100
-If Output MP40-Nutr = ON Then 100
-If Output MP40-Pulse = ON Then 100
-If Output MP40-ReefC = ON Then 100
-If Output MP40-Tidal = ON Then 100
+If Output FdC-Siphon = ON Then 100
+If Output FdD-Maint = ON Then 100
 ```
 
 AB+
 
-**Radion-L** Outlet
+**Radion--L** Output
 ```
 Fallback OFF
 tdata 00:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -398,48 +407,35 @@ tdata 21:00:00,0,0,2,24,24,100,100,100,24,24,100,0,0
 tdata 22:00:00,0,0,1,24,24,100,100,100,24,24,100,0,0
 tdata 23:59:00,0,0,0,0,0,0,0,0,0,0,0,0,0
 If Output Feed = ON Then 100
-If Output Siphon = ON Then 100
-If Output Maintenance = ON Then 100
-If Output MP40-Feed = ON Then 100
-If Output MP40-Const = ON Then 100
-If Output MP40-Lagoon = ON Then 100
-If Output MP40-Nutr = ON Then 100
-If Output MP40-Pulse = ON Then 100
-If Output MP40-ReefC = ON Then 100
-If Output MP40-Tidal = ON Then 100
+If Output FdC-Siphon = ON Then 100
+If Output FdD-Maint = ON Then 100
 ```
 
 
 
-### Radion-R
+### Radion--R
 
 FOWLR
 
-**Radion-R** Outlet
+**Radion--R** Output
 ```
 Fallback OFF
 tdata 00:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 12:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 13:00:00,0,0,100,24,24,100,100,100,24,24,100,0,0
-tdata 20:00:00,0,0,100,24,24,100,100,100,24,24,100,0,0
-tdata 21:00:00,0,0,2,24,24,100,100,100,24,24,100,0,0
-tdata 22:00:00,0,0,1,24,24,100,100,100,24,24,100,0,0
-tdata 23:59:00,0,0,0,0,0,0,0,0,0,0,0,0,0
+tdata 09:00:00,0,0,1,0,0,0,0,0,0,0,0,0,0
+tdata 09:45:00,0,0,30,0,0,100,100,100,0,0,100,0,0
+tdata 13:00:00,0,0,60,24,24,100,100,100,24,24,100,0,0
+tdata 18:00:00,0,0,45,24,24,100,100,100,24,24,100,0,0
+tdata 19:45:00,0,0,30,0,0,100,100,100,0,0,100,0,0
+tdata 20:30:00,0,0,1,0,0,100,100,100,0,0,100,0,0
+tdata 23:59:00,0,0,1,0,0,0,0,0,0,0,0,0,0
 If Output Feed = ON Then 100
-If Output Siphon = ON Then 100
-If Output Maintenance = ON Then 100
-If Output MP40-Feed = ON Then 100
-If Output MP40-Const = ON Then 100
-If Output MP40-Lagoon = ON Then 100
-If Output MP40-Nutr = ON Then 100
-If Output MP40-Pulse = ON Then 100
-If Output MP40-ReefC = ON Then 100
-If Output MP40-Tidal = ON Then 100
+If Output FdC-Siphon = ON Then 100
+If Output FdD-Maint = ON Then 100
 ```
 
 AB+
 
-**Radion-R** Outlet
+**Radion--R** Output
 ```
 Fallback OFF
 tdata 00:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -450,15 +446,8 @@ tdata 21:00:00,0,0,2,24,24,100,100,100,24,24,100,0,0
 tdata 22:00:00,0,0,1,24,24,100,100,100,24,24,100,0,0
 tdata 23:59:00,0,0,0,0,0,0,0,0,0,0,0,0,0
 If Output Feed = ON Then 100
-If Output Siphon = ON Then 100
-If Output Maintenance = ON Then 100
-If Output MP40-Feed = ON Then 100
-If Output MP40-Const = ON Then 100
-If Output MP40-Lagoon = ON Then 100
-If Output MP40-Nutr = ON Then 100
-If Output MP40-Pulse = ON Then 100
-If Output MP40-ReefC = ON Then 100
-If Output MP40-Tidal = ON Then 100
+If Output FdC-Siphon = ON Then 100
+If Output FdD-Maint = ON Then 100
 ```
 
 
@@ -482,26 +471,26 @@ calculations:
 
 ### AWE-Old
 
-**AWE-Old** Outlet
+**AWE-Old** Output
 ```
 Fallback OFF
 tdata 00:00:00,1,5,0,78,2,148,130,0,78,2,28,11,0
 Fallback ON
 Set ON
-If Output Maintenance = ON Then OFF
+If Output FdD-Maint = ON Then OFF
 ```
 
 
 
 ### AWE-New
 
-**AWE-New** Outlet
+**AWE-New** Output
 ```
 Fallback OFF
 tdata 00:00:00,1,21,0,78,2,148,130,0,78,2,28,11,0
 Fallback ON
 Set ON
-If Output Maintenance = ON Then OFF
+If Output FdD-Maint = ON Then OFF
 ```
 
 
@@ -513,22 +502,31 @@ If Output Maintenance = ON Then OFF
 Type:
 - Neptune AFS
 
-### **Feed-Timer** Virtual Outlet
+### **Feed** Virtual Output
+```
+Fallback OFF
+Set OFF
+If Output Feed-Timer = ON Then ON
+If Output FdA-Feed = ON Then ON
+If Output FdC-Siphon = ON Then OFF
+If Output FdD-Maint = ON Then OFF
+```
+
+### **Feed-Timer** Virtual Output
 
 ```
 Fallback OFF
 Set OFF
 If Time 10:00 to 10:10 Then ON
 If Time 14:00 to 14:10 Then ON
-If Time 20:00 to 20:10 Then ON
-If Outlet Maintenance = ON Then OFF
+If Output FdC-Maint = ON Then OFF
 ```
 
 
 
 ### Feed-AFS
 
-**Feed-AFS** Virtual Outlet
+**Feed-AFS** Virtual Output
 ```
 Fallback OFF
 Set OFF
@@ -547,23 +545,23 @@ Type:
 
 ### Kalk-Stirrer
 
-**Kalk-Stirrer** Outlet
+**Kalk-Stirrer** Output
 ```
 Fallback ON
 Set ON
-If Outlet Maintenance = ON Then OFF
+If Output FdC-Maint = ON Then OFF
 ```
 
 
 
 ### Kalk DOS
 
-**Kalk-DOS** Outlet
+**Kalk-DOS** Output
 ```
 tdata tbd
 Fallback ON
 Set ON
-If Output Maintenance = ON Then OFF
+If Output FdD-Maint = ON Then OFF
 ```
 
 
@@ -575,7 +573,7 @@ If Output Maintenance = ON Then OFF
 Type:
 - Eheim Jager 300W Heater x2
 
-**Heater1** Outlet
+**Heater1** Output
 ```
 77.9 - 78.1
 ```
@@ -589,7 +587,7 @@ Type:
 Type:
 - Eheim Jager 300W Heater x2
 
-**Heater2** Outlet
+**Heater2** Output
 ```
 78.0 - 78.1
 ```
@@ -600,11 +598,11 @@ Type:
 
 ## Sump Light
 
-Turn on the outlet for the LED over the sump.  If the outlet is on,
+Turn on the output for the LED over the sump.  If the output is on,
 the LED is then turned on/off using a physical switch on the LED
 itself.
 
-**Sump-Light** Outlet
+**Sump-Light** Output
 ```
 Fallback OFF
 Set OFF
@@ -621,7 +619,7 @@ If Time 08:00 to 22:00 Then ON
 
 ### Apex-Warn
 
-**Apex-Warn** Outlet
+**Apex-Warn** Output
 ```
 Fallback OFF
 Set OFF
@@ -631,7 +629,7 @@ Set OFF
 
 ### Apex-Alarm
 
-**Apex-Alarm** Outlet
+**Apex-Alarm** Output
 ```
 Fallback OFF
 Set OFF
@@ -643,7 +641,7 @@ If Error Return Then ON
 
 ### Apex-SMS
 
-**Apex-SMS** Outlet
+**Apex-SMS** Output
 ```
 Fallback OFF
 Set OFF
@@ -672,7 +670,7 @@ Type:
 The Aquatec CDP 8800 booster pump increases the water pressure going
 into my RO/DI system ensuring that I can product ~75GPD.
 
-**Booster-Pump** Outlet
+**Booster-Pump** Output
 ```
 Fallback ON
 Set ON
@@ -682,19 +680,19 @@ Set ON
 
 
 
-## MP40 Profiles and Virtual Outlets
+## MP40 Profiles and Virtual Outputs
 
 I've created a handful of different profiles to run the MP40s in
 different modes.
 
 
 
-### **MP40-Const** Profile: Constant mode at 100%
+### **PConst** Profile: Constant mode at 100%
 
 Activation:
 - Activated when MP40-Const is ON
 
-**MP40-Const** Virtual Outlet
+**MP40-Const** Virtual Output
 ```
 Fallback OFF
 Set OFF
@@ -702,27 +700,25 @@ Set OFF
 
 
 
-### **MP40-Feed** Profile: Nutrient mode at 10%
+### **PFeed** Profile: Const mode at 1%
 
 Activation:
-- Activated when Feed is ON (triggered by Feed A or Feed-Timer)
-- Activated when MP40-Feed is ON
+- Activated when FdA-Feed is ON
 
-**MP40-Feed** Virtual Outlet
+**FdA-Feed** Virtual Output
 ```
 Fallback OFF
 Set OFF
-If Outlet Feed = ON Then MP40-Feed
 ```
 
 
 
-### **MP40-Lagoon** Profile: Lagoon mode at 100%
+### **PLagoon** Profile: Lagoon mode at 100%
 
 Activation:
 - Activated when MP40-Lagoon is ON
 
-**MP40-Lagoon** Virtual Outlet
+**MP40-Lagoon** Virtual Output
 ```
 Fallback OFF
 Set OFF
@@ -730,12 +726,12 @@ Set OFF
 
 
 
-### **MP40-Nutr** Profile: Nutrient mode at 100%
+### **PNutr** Profile: Nutrient mode at 100%
 
 Activation:
 - Activated when MP40-Nutr is ON
 
-**MP40-Nutr** Virtual Outlet
+**MP40-Nutr** Virtual Output
 ```
 Fallback OFF
 Set OFF
@@ -743,13 +739,12 @@ Set OFF
 
 
 
-### **MP40-Pulse** Profile: Pulse mode at 100%
+### **PPulse2** Profile: Pulse mode at 100% 2s
 
 Activation:
-- Activated when MP40-Pulse is ON
-- Activated when Feed B is ON
+- Activated when MP40-Pulse2 is ON
 
-**MP40-Pulse** Virtual Outlet
+**MP40-Pulse2** Virtual Output
 ```
 Fallback OFF
 Set OFF
@@ -758,12 +753,26 @@ If FeedB 000 Then ON
 
 
 
-### **MP40-ReefC** Profile: ReefCrest mode at 100%
+### **PPulse3** Profile: Pulse mode at 100% 3s
 
 Activation:
-- Activated when MP40-ReefC is ON
+- Activated when MP40-Pulse3 is ON
 
-**MP40-ReefC** Virtual Outlet
+**MP40-Pulse3** Virtual Output
+```
+Fallback OFF
+Set OFF
+If FeedB 000 Then ON
+```
+
+
+
+### **PReefCr** Profile: ReefCrest mode at 100%
+
+Activation:
+- Activated when MP40-ReefCr is ON
+
+**MP40-ReefCr** Virtual Output
 ```
 Fallback OFF
 Set OFF
@@ -771,12 +780,51 @@ Set OFF
 
 
 
-### **MP40-Tidal**: Tidal mode at 100%
+### **PSiphon** Profile: Constant mode at 1%
+
+Activation:
+- Activated when FdC-Siphon is ON
+
+**FdC-Siphon** Virtual Output
+```
+Fallback OFF
+Set OFF
+```
+
+
+
+### **PSlowest** Profile: Constant mode at 1%
+
+Activation:
+- Activated when MP40-Slowest is ON
+
+**MP40-Slowest** Virtual Output
+```
+Fallback OFF
+Set OFF
+```
+
+
+
+### **PTidal**: Tidal mode at 100%
 
 Activation:
 - Activated when MP40-Tidal is ON
 
-**MP40-Tidal** Virtual Outlet
+**MP40-Tidal** Virtual Output
+```
+Fallback OFF
+Set OFF
+```
+
+
+
+### **PWave** Profile: Pulse mode at 100% 0.8s
+
+Activation:
+- Activated when FdB-Wave is ON
+
+**FdB-Wave** Virtual Output
 ```
 Fallback OFF
 Set OFF
