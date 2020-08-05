@@ -5,7 +5,8 @@
 - Display Tank: **Elos 120XL Tank (127G gross/103G net)**
 - Display Tank Lights: **Ecotech Radion XR30w G4 x2**
 - Display Tank Primary Powerheads: **Ecotech MP40QD Powerhead x2**
-- Display Tank Secondary Powerheads: ? **x4**
+- Display Tank Secondary Powerheads: **Hydor Koralia Third Generation Powerhead (3450gph) x2**
+- Display Tank Secondary Powerheads: **Hydor Koralia Third Generation Powerhead (1350gph) x2**
 - RODI: **7 Stage Pro Plus 75 GPD RO/DI System**
 - RODI Pressure Boost Pump: **Aquatec CDP 8800**
 - Water Storage Container (ATO): **40G Ace Roto Mold vt00040swss**
@@ -20,6 +21,8 @@
 - Skimmer Pump: **VarioS-4 S Pinwheel Pump**
 - Refugium: **Chaeto Refugium 17G (14%)**
 - Refugium Light: **Kessil H380 Halo II LED Algae Grow Light**
+- Reactor: **BRS Single Deluxe Media Reactor**
+- Reactor Pump: **Maxi-Jet 1200**
 - Kalk Stirrer: **Avast Marine K2 Kalk Stirrer**
 - Kwalk Doser: **Neptune DOS**
 - Heaters: **Eheim Jager 300W Heater x2**
@@ -279,8 +282,7 @@ Type:
 ```
 Fallback PSlowest
 tdata 00:00:00,0,0,10,2,0,0,0,0,0,0,0,0,0
-tdata 05:00:00,0,0,15,2,0,0,0,0,0,0,0,0,0
-tdata 07:00:00,0,0,20,7,0,0,0,0,0,0,0,0,0
+tdata 07:00:00,0,0,10,7,0,0,0,0,0,0,0,0,0
 tdata 08:46:00,0,0,100,1,0,0,0,0,0,0,0,0,0
 tdata 10:25:00,0,0,85,3,150,0,0,0,0,0,0,0,0
 tdata 11:45:00,0,0,100,8,0,0,0,0,0,0,0,0,0
@@ -290,20 +292,27 @@ tdata 16:23:00,0,0,85,1,0,0,0,0,0,0,0,0,0
 tdata 18:00:00,0,0,100,3,200,0,0,0,0,0,0,0,0
 tdata 19:29:00,0,0,68,1,0,0,0,0,0,0,0,0,0
 tdata 20:00:00,0,0,30,7,0,0,0,0,0,0,0,0,0
-tdata 21:00:00,0,0,15,2,0,0,0,0,0,0,0,0,0
+tdata 21:00:00,0,0,10,2,0,0,0,0,0,0,0,0,0
 tdata 23:59:00,0,0,10,2,0,0,0,0,0,0,0,0,0
 If Output FdA-Feed = ON Then PFeed
 If Output FdB-Wave = ON Then PWave
 If Output FdC-Siphon = ON Then PSiphon
 If Output FdD-Maint = ON Then OFF
 If Output MP40-Const = ON Then PConst
+If Output MP40-Const01 = ON Then PConst01
 If Output MP40-Lagoon = ON Then PLagoon
 If Output MP40-Nutr = ON Then PNutr
+If Output MP40-PulseP5 = ON Then PPulseP5
+If Output MP40-PulseP8 = ON Then PPulseP8
 If Output MP40-Pulse2 = ON Then PPulse2
 If Output MP40-Pulse3 = ON Then PPulse3
+If Output MP40-Pulse5 = ON Then PPulse5
+If Output MP40-Pulse8 = ON Then PPulse8
+If Output MP40-Pulse10 = ON Then PPulse10
 If Output MP40-ReefCr = ON Then PReefCr
 If Output MP40-Slowest = ON Then PSlowest
 If Output MP40-Tidal = ON Then PTidal
+If Time 21:00 to 07:00 Then PSleep
 ```
 
 
@@ -314,8 +323,7 @@ If Output MP40-Tidal = ON Then PTidal
 ```
 Fallback PSlowest
 tdata 00:00:00,0,0,10,2,0,0,0,0,0,0,0,0,0
-tdata 05:00:00,0,0,15,2,0,0,0,0,0,0,0,0,0
-tdata 07:00:00,0,0,20,7,0,0,0,0,0,0,0,0,0
+tdata 07:00:00,0,0,10,7,0,0,0,0,0,0,0,0,0
 tdata 08:46:00,0,0,100,1,0,0,0,0,0,0,0,0,0
 tdata 10:25:00,0,0,85,3,150,0,0,0,0,0,0,0,0
 tdata 11:45:00,0,0,100,8,0,0,0,0,0,0,0,0,0
@@ -325,21 +333,28 @@ tdata 16:23:00,0,0,85,1,0,0,0,0,0,0,0,0,0
 tdata 18:00:00,0,0,100,3,200,0,0,0,0,0,0,0,0
 tdata 19:29:00,0,0,68,1,0,0,0,0,0,0,0,0,0
 tdata 20:00:00,0,0,30,7,0,0,0,0,0,0,0,0,0
-tdata 21:00:00,0,0,15,2,0,0,0,0,0,0,0,0,0
+tdata 21:00:00,0,0,10,2,0,0,0,0,0,0,0,0,0
 tdata 23:59:00,0,0,10,2,0,0,0,0,0,0,0,0,0
 If Output FdA-Feed = ON Then PFeed
 If Output FdB-Wave = ON Then PWave
 If Output FdC-Siphon = ON Then PSiphon
 If Output FdD-Maint = ON Then OFF
 If Output MP40-Const = ON Then PConst
+If Output MP40-Const01 = ON Then PConst01
 If Output MP40-Lagoon = ON Then PLagoon
 If Output MP40-Nutr = ON Then PNutr
-If Output MP40-Pulse2 = ON Then PPulse2
-If Output MP40-Pulse3 = ON Then PPulse3
+If Output MP40-Pulse05 = ON Then PPulse05
+If Output MP40-Pulse08 = ON Then PPulse08
+If Output MP40-Pulse2 = ON Then PAntiSync
+If Output MP40-Pulse3 = ON Then PAntiSync
+If Output MP40-Pulse5 = ON Then PAntiSync
+If Output MP40-Pulse10 = ON Then PAntiSync
 If Output MP40-ReefCr = ON Then PReefCr
 If Output MP40-Slowest = ON Then PSlowest
 If Output MP40-Tidal = ON Then PTidal
+If Time 21:00 to 07:00 Then PSleep
 ```
+
 
 
 
@@ -537,6 +552,36 @@ Defer 000:30 Then ON
 
 
 
+## Refugium Light
+
+Type:
+- Kessil H380 Halo II LED Algae Grow Light
+
+**Refugium** Output
+```
+Fallback OFF
+Set OFF
+If Time 21:00 to 24:00 Then ON
+```
+
+
+
+
+
+## Reactor
+
+**Reactor** Output
+```
+Fallback OFF
+Set ON
+If Output Return = OFF Then OFF
+Defer 005:00 Then ON
+```
+
+
+
+
+
 ## Kalkwasser
 
 Type:
@@ -693,6 +738,19 @@ Activation:
 - Activated when MP40-Const is ON
 
 **MP40-Const** Virtual Output
+```
+Fallback OFF
+Set OFF
+```
+
+
+
+### **PConst01** Profile: Constant mode at 1%
+
+Activation:
+- Activated when MP40-Const01 is ON
+
+**MP40-Const01** Virtual Output
 ```
 Fallback OFF
 Set OFF
