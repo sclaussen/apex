@@ -5,13 +5,10 @@
 - Display Tank: **Elos 120XL Tank (127G gross/103G net)**
 - Display Tank Lights: **Ecotech Radion XR30w G4 x2**
 - Display Tank Primary Powerheads: **Ecotech MP40QD Powerhead x2**
-- Display Tank Secondary Powerheads: **Hydor Koralia Third Generation Powerhead (3450gph) x2**
-- Display Tank Secondary Powerheads: **Hydor Koralia Third Generation Powerhead (1350gph) x2**
 - RODI: **7 Stage Pro Plus 75 GPD RO/DI System**
 - RODI Pressure Boost Pump: **Aquatec CDP 8800**
-- Water Storage Container (ATO): **40G Ace Roto Mold vt00040swss**
-- Water Storage Container (NSW): **40G Ace Roto Mold vt00040swss**
-- Water Storage Container (Reserve): **80G Ace Roto Mold**
+- Water Storage Container (ATO): **55G Ace Roto-Mold **
+- Water Storage Container (SW): **55G Ace Roto-Mold**
 - Water Storage Pump: **BlueLine Aqua Pump 70 HD**
 - Water Storage Water Level Sensor: **Neptune Optical Sensor**
 - Sump: **Custom Acrylic Sump (35G)**
@@ -19,11 +16,7 @@
 - Return Pump: **Neptune COR-15 Return Pump**
 - Skimmer: **Regal 200INT Skimmer**
 - Skimmer Pump: **VarioS-4 S Pinwheel Pump**
-- Refugium: **Chaeto Refugium 17G (14%)**
-- Refugium Light: **Kessil H380 Halo II LED Algae Grow Light**
-- Reactor: **BRS Single Deluxe Media Reactor**
-- Reactor Pump: **Maxi-Jet 1200**
-- Kalk Stirrer: **Avast Marine K2 Kalk Stirrer**
+- Roller Mat: **Clarisea SK-3000**
 - Kwalk Doser: **Neptune DOS**
 - Heaters: **Eheim Jager 300W Heater x2**
 - Auto Top Off: **Neptune ATK Auto Top Off**
@@ -31,6 +24,18 @@
 - Feeder: **Neptune AFS**
 - PAR Meter: **Neptune ASM Module**
 - Ecotech Radion and MP40 controller: **Neptune WXM Module**
+- Live Rock: **BRS Pukani**
+
+On the bench at the moment:
+- Display Tank Secondary Powerheads: **Hydor Koralia Third Generation Powerhead (3450gph) x2**
+- Display Tank Secondary Powerheads: **Hydor Koralia Third Generation Powerhead (1350gph) x2**
+- Refugium: **Chaeto Refugium 17G (14%)**
+- Refugium Light: **Kessil H380 Halo II LED Algae Grow Light**
+- Reactor: **BRS Single Deluxe Media Reactor**
+- Reactor Pump: **Maxi-Jet 1200**
+- Kalk Stirrer: **Avast Marine K2 Kalk Stirrer**
+
+
 
 
 
@@ -276,9 +281,9 @@ Min Time 060:00 Then OFF
 Type:
 - Ecotech MP40QD Powerhead x2
 
-### MP40--L
+### MP40--Front
 
-**MP40--L** Output
+**MP40--Front** Output
 ```
 Fallback PSlowest
 tdata 00:00:00,0,0,10,2,0,0,0,0,0,0,0,0,0
@@ -302,12 +307,9 @@ If Output MP40-Const = ON Then PConst
 If Output MP40-Const01 = ON Then PConst01
 If Output MP40-Lagoon = ON Then PLagoon
 If Output MP40-Nutr = ON Then PNutr
-If Output MP40-PulseP5 = ON Then PPulseP5
-If Output MP40-PulseP8 = ON Then PPulseP8
 If Output MP40-Pulse2 = ON Then PPulse2
 If Output MP40-Pulse3 = ON Then PPulse3
 If Output MP40-Pulse5 = ON Then PPulse5
-If Output MP40-Pulse8 = ON Then PPulse8
 If Output MP40-Pulse10 = ON Then PPulse10
 If Output MP40-ReefCr = ON Then PReefCr
 If Output MP40-Slowest = ON Then PSlowest
@@ -317,9 +319,9 @@ If Time 21:00 to 07:00 Then PSleep
 
 
 
-### MP40--R
+### MP40--Back
 
-**MP40--R** Output
+**MP40--Back** Output
 ```
 Fallback PSlowest
 tdata 00:00:00,0,0,10,2,0,0,0,0,0,0,0,0,0
@@ -343,8 +345,6 @@ If Output MP40-Const = ON Then PConst
 If Output MP40-Const01 = ON Then PConst01
 If Output MP40-Lagoon = ON Then PLagoon
 If Output MP40-Nutr = ON Then PNutr
-If Output MP40-Pulse05 = ON Then PPulse05
-If Output MP40-Pulse08 = ON Then PPulse08
 If Output MP40-Pulse2 = ON Then PAntiSync
 If Output MP40-Pulse3 = ON Then PAntiSync
 If Output MP40-Pulse5 = ON Then PAntiSync
@@ -397,30 +397,13 @@ FOWLR
 ```
 Fallback OFF
 tdata 00:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 09:00:00,0,0,1,0,0,0,0,0,0,0,0,0,0
-tdata 09:45:00,0,0,30,0,0,100,100,100,0,0,100,0,0
-tdata 13:00:00,0,0,60,24,24,100,100,100,24,24,100,0,0
-tdata 18:00:00,0,0,45,24,24,100,100,100,24,24,100,0,0
-tdata 19:45:00,0,0,30,0,0,100,100,100,0,0,100,0,0
-tdata 20:30:00,0,0,1,0,0,100,100,100,0,0,100,0,0
+tdata 10:04:00,0,0,2,0,0,0,0,0,0,0,0,0,0
+tdata 11:21:00,0,0,30,0,0,100,100,100,0,0,100,0,0
+tdata 14:23:00,0,0,49,0,0,100,100,100,0,0,100,0,0
+tdata 19:20:00,0,0,47,0,0,100,100,100,0,0,100,0,0
+tdata 20:55:00,0,0,35,75,75,100,100,100,75,75,100,0,0
+tdata 21:55:00,0,0,2,75,75,100,100,100,75,75,100,0,0
 tdata 23:59:00,0,0,1,0,0,0,0,0,0,0,0,0,0
-If Output Feed = ON Then 100
-If Output FdC-Siphon = ON Then 100
-If Output FdD-Maint = ON Then 100
-```
-
-AB+
-
-**Radion--L** Output
-```
-Fallback OFF
-tdata 00:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 12:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 13:00:00,0,0,100,24,24,100,100,100,24,24,100,0,0
-tdata 20:00:00,0,0,100,24,24,100,100,100,24,24,100,0,0
-tdata 21:00:00,0,0,2,24,24,100,100,100,24,24,100,0,0
-tdata 22:00:00,0,0,1,24,24,100,100,100,24,24,100,0,0
-tdata 23:59:00,0,0,0,0,0,0,0,0,0,0,0,0,0
 If Output Feed = ON Then 100
 If Output FdC-Siphon = ON Then 100
 If Output FdD-Maint = ON Then 100
@@ -436,30 +419,13 @@ FOWLR
 ```
 Fallback OFF
 tdata 00:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 09:00:00,0,0,1,0,0,0,0,0,0,0,0,0,0
-tdata 09:45:00,0,0,30,0,0,100,100,100,0,0,100,0,0
-tdata 13:00:00,0,0,60,24,24,100,100,100,24,24,100,0,0
-tdata 18:00:00,0,0,45,24,24,100,100,100,24,24,100,0,0
-tdata 19:45:00,0,0,30,0,0,100,100,100,0,0,100,0,0
-tdata 20:30:00,0,0,1,0,0,100,100,100,0,0,100,0,0
+tdata 10:04:00,0,0,2,0,0,0,0,0,0,0,0,0,0
+tdata 11:21:00,0,0,30,0,0,100,100,100,0,0,100,0,0
+tdata 14:23:00,0,0,49,0,0,100,100,100,0,0,100,0,0
+tdata 19:20:00,0,0,47,0,0,100,100,100,0,0,100,0,0
+tdata 20:55:00,0,0,35,75,75,100,100,100,75,75,100,0,0
+tdata 21:55:00,0,0,2,75,75,100,100,100,75,75,100,0,0
 tdata 23:59:00,0,0,1,0,0,0,0,0,0,0,0,0,0
-If Output Feed = ON Then 100
-If Output FdC-Siphon = ON Then 100
-If Output FdD-Maint = ON Then 100
-```
-
-AB+
-
-**Radion--R** Output
-```
-Fallback OFF
-tdata 00:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 12:00:00,0,0,0,0,0,0,0,0,0,0,0,0,0
-tdata 13:00:00,0,0,100,24,24,100,100,100,24,24,100,0,0
-tdata 20:00:00,0,0,100,24,24,100,100,100,24,24,100,0,0
-tdata 21:00:00,0,0,2,24,24,100,100,100,24,24,100,0,0
-tdata 22:00:00,0,0,1,24,24,100,100,100,24,24,100,0,0
-tdata 23:59:00,0,0,0,0,0,0,0,0,0,0,0,0,0
 If Output Feed = ON Then 100
 If Output FdC-Siphon = ON Then 100
 If Output FdD-Maint = ON Then 100
@@ -477,10 +443,10 @@ Type:
 There are 3 "sets" of schemes saved publicly for AWE handling 10%,
 15%, and 20% auto water exchanges respectively.  Here's the
 calculations:
-- Total tank/sump volume (minus live rock et al) is 125G
-- 10% change: 12.5G/W, 1.79G/D, 6.76L/D, 677ML/D
-- 15% change: 18.75G/W, 2.68G/D, 10.14L/D, 1014ML/D
-- 20% change: 25G/W, 3.58G/D, 13.52L/D, 1352ML/D
+- Total tank/sump volume (minus live rock et al) is ~120G
+- 10% change: 12G/Week, 1.7G/Day,  6.4L/D,  640ML/D
+- 15% change: 18G/Week, 2.6G/Day,  9.8L/D,  980ML/D
+- 20% change: 24G/Week, 3.4G/Day, 12.8L/D, 1280ML/D
 
 
 
